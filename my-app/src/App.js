@@ -39,7 +39,7 @@ function TextAreaAsk(props) {
 
 function TextAreaRespose(props) {
   return(
-    <div class="form-outline margin-top: 10">
+    <div class="form-outline margin-top:10">
       {/* <label class="form-label" for="textAreaExample">Message</label> */}
       <textarea class="form-control" id="TextAreaRespose" rows="18" placeholder="Odpověd na žádost"></textarea>
       
@@ -142,9 +142,9 @@ function PageLarge(props) {
 
               </Row>
               <Row>
-                <Col size="col-md-8"></Col>
+                <Col size="col-md-10"></Col>
 
-                <Col size="col-md-2">
+                <Col size="col-md-1">
                   <input type="button" class="btn-check " name="btnradio" id="btnsave" autocomplete="off"></input>
                   <label class="btn btn-outline-primary" for="btnsave">Schváleno</label>
                 </Col>
