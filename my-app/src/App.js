@@ -141,6 +141,14 @@ function PageLarge(props) {
                   </Col>
 
               </Row>
+              <Row>
+                <Col size="col-md-8"></Col>
+
+                <Col size="col-md-2">
+                  <input type="button" class="btn-check " name="btnradio" id="btnsave" autocomplete="off"></input>
+                  <label class="btn btn-outline-primary" for="btnsave">Schváleno</label>
+                </Col>
+              </Row>
           
           </CardBody>
       </Card>
