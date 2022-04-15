@@ -37,6 +37,49 @@ function TextAreaAsk(props) {
   
 }
 
+function Table(params) {
+  return(
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Uživatel</th>
+          <th scope="col">Stav schválení</th>
+          <th scope="col">Datum</th>
+          <th scope="col">Poznámka</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>001</td>
+          <td>Tomas</td>
+          <td>Neschváleno</td>
+          <td>22.1.2022</td>
+          <td>dodělat</td>
+        </tr>
+        <tr>
+          <th scope="row">1</th>
+          <td>001</td>
+          <td>Tomas</td>
+          <td>Neschváleno</td>
+          <td>22.1.2022</td>
+          <td>dodělat</td>
+        </tr>
+        <tr>
+          <th scope="row">1</th>
+          <td>001</td>
+          <td>Tomas</td>
+          <td>Neschváleno</td>
+          <td>22.1.2022</td>
+          <td>dodělat</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  )
+}
+
 function TextAreaRespose(props) {
   return(
     <div class="form-outline margin-top:10">
@@ -60,6 +103,15 @@ function Buttons(params) {
       <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"></input>
       <label class="btn btn-outline-primary" for="btnradio3">Zamítnuto</label>
     </div>
+  )
+  
+}
+function Buttons1(params) {
+  return(
+    <div><input type="button" class="btn-check " name="btnradio" id="btnsave" autocomplete="off"></input>
+    <label class="btn btn-outline-primary" for="btnsave">Uložit</label></div>
+    
+    
   )
   
 }
@@ -145,10 +197,12 @@ function PageLarge(props) {
                 <Col size="col-md-10"></Col>
 
                 <Col size="col-md-1">
-                  <input type="button" class="btn-check " name="btnradio" id="btnsave" autocomplete="off"></input>
-                  <label class="btn btn-outline-primary" for="btnsave">Schváleno</label>
+                  <Buttons1{...props}/>
+                  
                 </Col>
               </Row>
+              <Row>Historie úprav:</Row>
+              <Row><Table{...props}/></Row>
           
           </CardBody>
       </Card>
