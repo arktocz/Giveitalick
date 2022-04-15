@@ -51,7 +51,7 @@ function Table(params) {
       </thead>
       <tbody>
         <tr>
-          <th scope="row">1</th>
+          {/* <th scope="row">1</th> */}
           <td>001</td>
           <td>Tomas</td>
           <td>Neschváleno</td>
@@ -59,7 +59,7 @@ function Table(params) {
           <td>dodělat</td>
         </tr>
         <tr>
-          <th scope="row">1</th>
+          {/* <th scope="row">1</th> */}
           <td>001</td>
           <td>Tomas</td>
           <td>Neschváleno</td>
@@ -67,7 +67,7 @@ function Table(params) {
           <td>dodělat</td>
         </tr>
         <tr>
-          <th scope="row">1</th>
+          {/* <th scope="row">1</th> */}
           <td>001</td>
           <td>Tomas</td>
           <td>Neschváleno</td>
@@ -201,7 +201,7 @@ function PageLarge(props) {
                   
                 </Col>
               </Row>
-              <Row>Historie úprav:</Row>
+              <CardHeader>Historie úprav:</CardHeader>
               <Row><Table{...props}/></Row>
           
           </CardBody>
