@@ -42,6 +42,7 @@ function Table(params) {
     <table class="table">
       <thead>
         <tr>
+          <th scope="col">ID-prim</th>
           <th scope="col">ID</th>
           <th scope="col">Uživatel</th>
           <th scope="col">Stav schválení</th>
@@ -53,13 +54,6 @@ function Table(params) {
         <tr>
           {/* <th scope="row">1</th> */}
           <td>001</td>
-          <td>Tomas</td>
-          <td>Neschváleno</td>
-          <td>22.1.2022</td>
-          <td>dodělat</td>
-        </tr>
-        <tr>
-          {/* <th scope="row">1</th> */}
           <td>001</td>
           <td>Tomas</td>
           <td>Neschváleno</td>
@@ -68,6 +62,16 @@ function Table(params) {
         </tr>
         <tr>
           {/* <th scope="row">1</th> */}
+          <td>001</td>
+          <td>001</td>
+          <td>Tomas</td>
+          <td>Neschváleno</td>
+          <td>22.1.2022</td>
+          <td>dodělat</td>
+        </tr>
+        <tr>
+          {/* <th scope="row">1</th> */}
+          <td>001</td>
           <td>001</td>
           <td>Tomas</td>
           <td>Neschváleno</td>
