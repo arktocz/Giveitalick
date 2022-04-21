@@ -1,4 +1,4 @@
-# Giveitalick
+# read this:
 
 zadání č.8:
 
