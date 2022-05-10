@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 // import './App.css';
+import React from 'react'
+//import './index.js'
 
 
 function App() {
@@ -37,50 +39,57 @@ function TextAreaAsk(props) {
   
 }
 
-function Table(params) {
+
+
+function TableUserData(props){
+  
+  let request_history = props.request_history.map(
+    (item, index) => (
+      <Row key={index}>
+        <Col>{item.ID_request}</Col>
+        <Col>{item.ID_user}</Col>
+        <Col>{item.name_user}</Col>
+        <Col>{item.ID_TARGET}</Col>
+        <Col>{item.name_target}</Col>
+        <Col>{item.request_state}</Col>
+        <Col>{item.poznamka}</Col>
+      </Row>
+    )
+  )
+
   return(
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID-prim</th>
-          <th scope="col">ID</th>
-          <th scope="col">Uživatel</th>
-          <th scope="col">Stav schválení</th>
-          <th scope="col">Datum</th>
-          <th scope="col">Poznámka</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          {/* <th scope="row">1</th> */}
-          <td>001</td>
-          <td>001</td>
-          <td>Tomas</td>
-          <td>Neschváleno</td>
-          <td>22.1.2022</td>
-          <td>dodělat</td>
-        </tr>
-        <tr>
-          {/* <th scope="row">1</th> */}
-          <td>001</td>
-          <td>001</td>
-          <td>Tomas</td>
-          <td>Neschváleno</td>
-          <td>22.1.2022</td>
-          <td>dodělat</td>
-        </tr>
-        <tr>
-          {/* <th scope="row">1</th> */}
-          <td>001</td>
-          <td>001</td>
-          <td>Tomas</td>
-          <td>Neschváleno</td>
-          <td>22.1.2022</td>
-          <td>dodělat</td>
-        </tr>
-        
-      </tbody>
-    </table>
+    <Row>
+      {request_history}
+    </Row>
+    
+  )
+}
+
+
+function Cardcomponent(props) {
+  const [request_history, setRequest_history] = React.useState(props.request_history)
+  const onAdd= (request_state, poznamka)=>{
+    const history=[item.request_history]//dodělat
+  }
+    
+  return(
+    
+    <Card>
+      <CardHeader>
+        <Row>
+          <Col scope="col">ID-req</Col>
+          <Col scope="col">ID_user</Col>
+          <Col scope="col">Uživatel</Col>
+          <Col scope="col">ID_TARGET</Col>
+          <Col scope="col">Target</Col>
+          <Col scope="col">Stav schválení</Col>
+          <Col scope="col">Poznámka</Col>
+        </Row>
+      </CardHeader>
+      <CardBody>
+          <TableUserData request_history={request_history}/>
+      </CardBody>
+    </Card>
   )
 }
 
@@ -95,7 +104,7 @@ function TextAreaRespose(props) {
   
 }
 
-function Buttons(params) {
+function Buttons(props) {
   return(
     <div class="btn-group"  role="group" aria-label="Basic radio toggle button group">
       <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"></input>
@@ -110,15 +119,19 @@ function Buttons(params) {
   )
   
 }
-function Buttons1(params) {
+function Buttons1(props) {
+  
   return(
-    <div><input type="button" class="btn-check " name="btnradio" id="btnsave" autocomplete="off"></input>
+    <div><input type="button" class="btn-check" name="btnradio" id="btnsave" autocomplete="off"></input>
     <label class="btn btn-outline-primary" for="btnsave">Uložit</label></div>
     
     
   )
-  
 }
+
+
+
+
 
 
 function Row(props) {
@@ -139,6 +152,51 @@ function CardBody(props) {
       <div className="card-body" > { props.children } </div>
       )
 }
+
+
+
+function Textcomponent(props) {
+  return(
+      <Card>
+        <CardHeader>Vaše žádost</CardHeader>
+        <CardBody>
+            <Row>
+                  <Col size="col-md-8">
+                      <TextAreaAsk{...props}/>
+                  </Col>
+                  <Col size="col-md-3">
+                    <Row ><Buttons{...props}/></Row>
+
+                    <Row><TextAreaRespose{...props}/></Row>
+                    
+                  </Col>
+
+            </Row>
+            <Row>
+                <Col size="col-md-10"></Col>
+
+                <Col size="col-md-1">
+                  <Buttons1 onClick={()=>props.onAdd(item.request_state, item.poznamka)}/>
+                  {/* dodelat */}
+                  
+                </Col>
+            </Row>
+        </CardBody>
+      </Card>
+  )
+  
+}
+function Tablecomponent(props) {
+  return(
+    <div>
+      <Row>Historie úprav:</Row>
+      <Row><Cardcomponent{...props} /></Row>
+
+    </div>
+  )
+  
+}
+
 
 function CardFooter(props) {
   return (
@@ -176,37 +234,12 @@ function ExtraInfo(props) {
 function PageLarge(props) {
   return (
       <Card>
-          <CardHeader>Vaše žádost</CardHeader>
+          {/* <CardHeader>Vaše žádost</CardHeader> */}
           <CardBody>
-              <Row>
-                  <Col size="col-md-8">
-                      <TextAreaAsk{...props}/>
-                  </Col>
-                  
-
-                  {/* <Col size="col-md-6">
-                      <ExtraInfo {...props} />
-                  </Col> */}
-
-                  <Col size="col-md-3">
-                    <Row ><Buttons{...props}/></Row>
-
-                    <Row><TextAreaRespose{...props}/></Row>
-                     
-                      
-                  </Col>
-
-              </Row>
-              <Row>
-                <Col size="col-md-10"></Col>
-
-                <Col size="col-md-1">
-                  <Buttons1{...props}/>
-                  
-                </Col>
-              </Row>
-              <CardHeader>Historie úprav:</CardHeader>
-              <Row><Table{...props}/></Row>
+              <Row><Textcomponent{...props}/></Row>
+          {/* <CardHeader>Historie úprav:</CardHeader>
+              <Row><Table{...props}/></Row> */}
+              <Row><Tablecomponent{...props}/></Row>
           
           </CardBody>
       </Card>
@@ -214,7 +247,17 @@ function PageLarge(props) {
 }
 
 function PageStoryBook(props) {
-  const extraProps = {};
+  const extraProps = {
+    'name':2,
+    'request_history':[
+      {'ID_request':52,'ID_user':2, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text poznamky"},
+    
+    ],
+    'request':[
+      {'request_content':"sfdsgsgs", 'state':'zamítnuto'}
+    ]
+
+  };
   return <PageLarge {...extraProps} {...props} />
 }
 
