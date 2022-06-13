@@ -101,6 +101,7 @@ function TextAreaRespose(props){
   const onchange=(e)=>{
     console.log(e.target.value)
     setvalue(e.target.value)
+    props.OnTextChange(value)
   }
   return(
     <div class="form-outline margin-top:10">
@@ -113,13 +114,13 @@ function TextAreaRespose(props){
 }
 
 function Buttons(props) {
-  const value=TextAreaRespose('value')
+  
   const data2={
     'name':2,
     'request_history':[
       {'id':89, 'date':'1.2.2020', 'poznamka':'bla5', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
       {'id':89, 'date':'1.2.2020', 'poznamka':'bla7', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
-      {'id':89, 'date':'1.2.2020', 'poznamka':value, 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}}
+      {'id':89, 'date':'1.2.2020', 'poznamka':'lue', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}}
       // {'ID_request':52,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text poznamky"},
       // {'ID_request':53,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text pozsnamky"},
       // {'ID_request':53,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text pozsnamky"}
@@ -138,7 +139,7 @@ function Buttons(props) {
   
       <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio3">Zamítnuto</label>
-      <button className='btn btn-primary' onClick={()=>props.onchange(data2)}>set</button>
+      <button className='btn btn-primary' onClick={props.OnSetClick}>set</button>
     </div>
   )
   
@@ -178,6 +179,12 @@ function CardBody(props) {
 
 
 function Textcomponent(props) {
+  function OnSetClick(){
+    console.log('OnSetClick')
+  }
+  function OnTextChange(value){
+    console.log('OnTextChange')
+  }
   return(
       <Card>
         <CardHeader>Vaše žádost</CardHeader>
@@ -188,9 +195,9 @@ function Textcomponent(props) {
                       
                   </Col>
                   <Col size="col-md-3">
-                    <Row ><Buttons{...props}/></Row>
+                    <Row ><Buttons{...props} OnSetClick={OnSetClick}/></Row>
 
-                    <Row><TextAreaRespose{...props}/></Row>
+                    <Row><TextAreaRespose{...props} OnTextChange={OnTextChange}/></Row>
                     
                   </Col>
 
