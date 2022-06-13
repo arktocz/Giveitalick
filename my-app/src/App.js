@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 // import './App.css';
-import React from 'react'
+import React, { useState } from 'react'
 //import './index.js'
 
 
@@ -45,14 +45,13 @@ function TableUserData(props){
   
   let request_history = props.request_history.map(
     (item, index) => (
-      <Row key={index}>
-        <Col>{item.ID_request}</Col>
-        <Col>{item.ID_user}</Col>
-        <Col>{item.name_user}</Col>
-        <Col>{item.ID_TARGET}</Col>
-        <Col>{item.name_target}</Col>
-        <Col>{item.request_state}</Col>
+      <Row key={item.id}>
+        <Col>{item.id}</Col>
+        <Col>{item.date}</Col>
         <Col>{item.poznamka}</Col>
+        <Col>{item.editor_id}</Col>
+        <Col>{item.editor_name}</Col>
+      
       </Row>
     )
   )
@@ -68,36 +67,45 @@ function TableUserData(props){
 
 function Cardcomponent(props) {
   const [request_history, setRequest_history] = React.useState(props.request_history)
-  const onAdd= (request_state, poznamka)=>{
-    const history=[item.request_history]//dodělat
-  }
+  // const onAdd= (request_state, poznamka)=>{
+  //   const history=[item.request_history]//dodělat
+
+
+  // }
     
   return(
     
     <Card>
       <CardHeader>
         <Row>
-          <Col scope="col">ID-req</Col>
-          <Col scope="col">ID_user</Col>
-          <Col scope="col">Uživatel</Col>
-          <Col scope="col">ID_TARGET</Col>
+          <Col scope="col">ID</Col>
+          <Col scope="col">Date</Col>
+          <Col scope="col">Poznamka</Col>
+          <Col scope="col">Editor_ID</Col>
+          <Col scope="col">Editor_Name</Col>
+          {/* <Col scope="col">ID_TARGET</Col>
           <Col scope="col">Target</Col>
           <Col scope="col">Stav schválení</Col>
-          <Col scope="col">Poznámka</Col>
+          <Col scope="col">Poznámka</Col> */}
         </Row>
       </CardHeader>
       <CardBody>
-          <TableUserData request_history={request_history}/>
+          <TableUserData request_history={props.request_history}/>
       </CardBody>
     </Card>
   )
 }
 
-function TextAreaRespose(props) {
+function TextAreaRespose(props){
+  const [value, setvalue] = useState('')
+  const onchange=(e)=>{
+    console.log(e.target.value)
+    setvalue(e.target.value)
+  }
   return(
     <div class="form-outline margin-top:10">
       {/* <label class="form-label" for="textAreaExample">Message</label> */}
-      <textarea class="form-control" id="TextAreaRespose" rows="18" placeholder="Odpověd na žádost"></textarea>
+      <textarea class="form-control" id="TextAreaRespose" rows="18" placeholder="Odpověd na žádost" onChange={onchange} value={value}></textarea>
       
     </div>
   )
@@ -105,32 +113,46 @@ function TextAreaRespose(props) {
 }
 
 function Buttons(props) {
+  const value=TextAreaRespose('value')
+  const data2={
+    'name':2,
+    'request_history':[
+      {'id':89, 'date':'1.2.2020', 'poznamka':'bla5', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+      {'id':89, 'date':'1.2.2020', 'poznamka':'bla7', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+      {'id':89, 'date':'1.2.2020', 'poznamka':value, 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}}
+      // {'ID_request':52,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text poznamky"},
+      // {'ID_request':53,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text pozsnamky"},
+      // {'ID_request':53,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text pozsnamky"}
+
+    ],
+    
+  
+  };
   return(
     <div class="btn-group"  role="group" aria-label="Basic radio toggle button group">
       <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"></input>
-      <label class="btn btn-outline-primary" for="btnradio1">Schváleno</label>
+      <label class="btn btn-outline-primary" htmlFor="btnradio1">Schváleno</label>
   
       <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"></input>
-      <label class="btn btn-outline-primary" for="btnradio2">Nevyřízeno</label>
+      <label class="btn btn-outline-primary" htmlFor="btnradio2">Nevyřízeno</label>
   
       <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"></input>
-      <label class="btn btn-outline-primary" for="btnradio3">Zamítnuto</label>
+      <label class="btn btn-outline-primary" htmlFor="btnradio3">Zamítnuto</label>
+      <button className='btn btn-primary' onClick={()=>props.onchange(data2)}>set</button>
     </div>
   )
   
 }
-function Buttons1(props) {
+function ButtonAdd(props) {
   
   return(
-    <div><input type="button" class="btn-check" name="btnradio" id="btnsave" autocomplete="off"></input>
+    <div><input type="button" class="btn-check" name="btnradio" id="btnsave" autocomplete="off" onClick={props.onClick}></input>
     <label class="btn btn-outline-primary" for="btnsave">Uložit</label></div>
+
     
     
   )
 }
-
-
-
 
 
 
@@ -163,6 +185,7 @@ function Textcomponent(props) {
             <Row>
                   <Col size="col-md-8">
                       <TextAreaAsk{...props}/>
+                      
                   </Col>
                   <Col size="col-md-3">
                     <Row ><Buttons{...props}/></Row>
@@ -176,7 +199,8 @@ function Textcomponent(props) {
                 <Col size="col-md-10"></Col>
 
                 <Col size="col-md-1">
-                  <Buttons1 onClick={()=>props.onAdd(item.request_state, item.poznamka)}/>
+                  <ButtonAdd/>
+                  {/* <ButtonAdd onClick={()=>props.onAdd(item.request_state, item.poznamka)}/> */}
                   {/* dodelat */}
                   
                 </Col>
@@ -190,6 +214,7 @@ function Tablecomponent(props) {
   return(
     <div>
       <Row>Historie úprav:</Row>
+      {/* zkusit předelat do card */}
       <Row><Cardcomponent{...props} /></Row>
 
     </div>
@@ -232,32 +257,63 @@ function ExtraInfo(props) {
 }
 
 function PageLarge(props) {
+
+  // function onAdd(request_state, poznamka) {
+  //   const poznamka=
+
+    
+  // }
+const [data, setdata]=useState(props.data)
+const data2={
+  'name':2,
+  'request_history':[
+    {'id':89, 'date':'1.2.2020', 'poznamka':'bla1', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+    {'id':89, 'date':'1.2.2020', 'poznamka':'bla6', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+    {'id':89, 'date':'1.2.2020', 'poznamka':'bla3', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+    
+  ],
+  
+
+};
+console.log(data)
   return (
       <Card>
           {/* <CardHeader>Vaše žádost</CardHeader> */}
           <CardBody>
-              <Row><Textcomponent{...props}/></Row>
+          <Row><Textcomponent{...data} onchange={setdata}/></Row>
+              {/* <Row><Textcomponent{...props} onClick={onAdd}/></Row> */}
           {/* <CardHeader>Historie úprav:</CardHeader>
               <Row><Table{...props}/></Row> */}
-              <Row><Tablecomponent{...props}/></Row>
+              <Row><Tablecomponent{...data}/></Row>
           
           </CardBody>
+          <button className='btn btn-primary' onClick={()=>setdata(data2)}>set</button>
       </Card>
   )
 }
 
 function PageStoryBook(props) {
   const extraProps = {
+    'data':{
     'name':2,
     'request_history':[
-      {'ID_request':52,'ID_user':2, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text poznamky"},
+      {'id':89, 'date':'1.2.2020', 'poznamka':'bla1', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+      {'id':89, 'date':'1.2.2020', 'poznamka':'bla66', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
+      {'id':89, 'date':'1.2.2020', 'poznamka':'bla3', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},,
     
     ],
-    'request':[
-      {'request_content':"sfdsgsgs", 'state':'zamítnuto'}
-    ]
+  }};
 
-  };
+  // 'data':{
+  // 'id':15,
+  // 'content':{'rows':[]},
+  // 'editor': {'id':622, 'name': 'Alexander'},
+  // 'history':[
+  //   {'id':89, 'date':'1.2.2020', 'poznamka':'bla1', 'editor':{'id':622, 'name':'Alexandr'}, 'content':{'rows':[]}},
+  //   {'id':90, 'date':'1.2.2020', 'poznamka':'bla2', 'editor':{'id':666, 'name':'Josef'}, 'content':{'rows':[]}},
+  
+  // ]
+  // }};
   return <PageLarge {...extraProps} {...props} />
 }
 
