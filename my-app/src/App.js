@@ -38,12 +38,16 @@ function TextAreaAsk(props) {
     // setvalue(e.target.value)
     props.OnTextAskChange(e.target.value)
   }
+  // let last_element=props.data.request_history.lenght-1;
+  // console.log(typeof(props.data.request_history))
  
   return(
     <div className="form-outline">
       {/* <label class="form-label" for="textAreaExample">Message</label> */}
       {/* <input type="textarea"></input> */}
-      <textarea className="form-control" id="TextAreaAsk" rows="20" defaultValue={props.data.request_history[0].content} onChange={onchange}   ></textarea>
+      
+      {/* <textarea className="form-control" id="TextAreaAsk" rows="20" defaultValue={props.data.request_history.slice(-1)[0].content} onChange={onchange}   ></textarea> */}
+      <textarea className="form-control" id="TextAreaAsk" rows="20" defaultValue={props.data.request_history[props.data.request_history.length-1].content} onChange={onchange}   ></textarea>
       
     </div>
   )
@@ -201,7 +205,7 @@ function Textcomponent(props) {
     let year = newDate.getFullYear();
     let fulldate= `${date}.${month}.${year}`;
 
-    const newRecord={'id':0, 'date':fulldate, 'poznamka':textAreaResponse, 'editor_id':0, 'editor_name':'', 'state':status, 'content':textAreaAsk};
+    const newRecord={'id':0, 'date':fulldate, 'poznamka':textAreaResponse, 'editor_id':0, 'editor_name':'Odpovídač', 'state':status, 'content':textAreaAsk};
     console.log(newRecord);
     props.onEditReqHistory(newRecord);
 
@@ -313,6 +317,8 @@ function PageStoryBook(props) {
     'name':2,
     'request_history':[
       {'id':89, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti"},
+      {'id':89, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti"},
+      {'id':89, 'date':'1.2.2020', 'poznamka':'konec', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadostilast"},
       
       // {'id':89, 'date':'1.2.2020', 'poznamka':'props3', 'editor_id':622, 'editor_name':'Alexandr','state':'nevyřízeno', 'content':{'rows':[]}},
     
