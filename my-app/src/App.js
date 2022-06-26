@@ -32,11 +32,11 @@ function Col(props) {
 function TextAreaAsk(props) {
   // console.log(props.data.request_history[0].content);
 
-  const [value, setvalue] = useState('')
+  // const [value, setvalue] = useState('')
   const onchange=(e)=>{
-    console.log(e.target.value)
-    setvalue(e.target.value)
-    props.OnTextChange(value)
+    // console.log(e.target.value)
+    // setvalue(e.target.value)
+    props.OnTextAskChange(e.target.value)
   }
  
   return(
@@ -78,7 +78,7 @@ function TableUserData(props){
 
 
 function Cardcomponent(props) {
-  console.log(props.data.request_history[0]);
+  // console.log(props.data.request_history[0]);
   const [request_history, setRequest_history] = React.useState(props.data.request_history)  
   return(
     
@@ -101,11 +101,11 @@ function Cardcomponent(props) {
 }
 
 function TextAreaRespose(props){
-  const [value, setvalue] = useState('')
+  // const [value, setvalue] = useState('')
   const onchange=(e)=>{
-    console.log(e.target.value)
-    setvalue(e.target.value)
-    props.OnTextChange(value)
+    // console.log(e.target.value)
+    // setvalue(e.target.value)
+    props.OnTextResponseChange(e.target.value)
   }
   return(
     <div class="form-outline margin-top:10">
@@ -119,56 +119,40 @@ function TextAreaRespose(props){
 
 function Buttons(props) {
   
-  // const data2={
-  //   'name':2,
-  //   'request_history':[
-  //     {'id':89, 'date':'1.2.2020', 'poznamka':'blasdfsdfsdfsdfsf', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
-  //     {'id':89, 'date':'1.2.2020', 'poznamka':'bla7', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}},
-  //     {'id':89, 'date':'1.2.2020', 'poznamka':'lue', 'editor_id':622, 'editor_name':'Alexandr', 'content':{'rows':[]}}
-  //     // {'ID_request':52,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text poznamky"},
-  //     // {'ID_request':53,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text pozsnamky"},
-  //     // {'ID_request':53,'ID_user':4, 'name_user':"Honza Pelikán", 'ID_TARGET':20,'name_target':"dalibor", 'request_state':"zamitnuto", 'poznamka':"text pozsnamky"}
-
-  //   ],};
-   
+  // const pressedbutton="";
   const [value, setvalue] = useState('')
-  const OnSetClick=(e)=>{
-    
-    console.log(e.target.value)
-    setvalue(e.target.pressedbutton)
-    
-    props.OnSetClick(value)
+  const ButtonPressed=(e)=>{
+  
+    setvalue(e.target.value)
+    // props.OnSetClick(value)
   }
+
+  const saveButtonHandler = () => {
+
+    props.returnNewRecord(value);
+  }
+
   
   return(
     
     <div class="btn-group"  role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value={1} onClick={OnSetClick} ></input>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="Schvaleno" onClick={ButtonPressed} ></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio1">Schváleno</label>
   
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value={2} onClick={OnSetClick} ></input>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Nevyrizeno" onClick={ButtonPressed} ></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio2">Nevyřízeno</label>
   
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value={3} onClick={OnSetClick} ></input>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Zamitnuto" onClick={ButtonPressed} ></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio3">Zamítnuto</label>
       &nbsp;
-      <button className='btn btn-primary' onClick={props.OnSetClick}>ULOŽIT</button>
+      <button className='btn btn-primary' onClick={saveButtonHandler}>ULOŽIT</button>
     </div>
    
     
   )
   
 }
-// function ButtonAdd(props) {
-  
-//   return(
-//     <div><input type="button" class="btn-check" name="btnradio" id="btnsave" autocomplete="off" onClick={props.onClick}></input>
-//     <label class="btn btn-outline-primary" htmlfor="btnsave" onClick={props.OnSetClick}>Uložit</label></div>
 
-    
-    
-//   )
-// }
 
 
 
@@ -194,38 +178,55 @@ function CardBody(props) {
 
 
 function Textcomponent(props) {
-  function OnSetClick(){
-    console.log('OnSetClick')
+
+
+  const [textAreaResponse, setTextAreaResponse] = useState("");
+  const [textAreaAsk, setTextAreaAsk] = useState("");
+
+
+  function OnTextAskChange(value){
+    setTextAreaAsk(value);
+    // console.log('OnTextChange')
   }
-  function OnTextChange(value){
-    console.log('OnTextChange')
+
+  function OnTextResponseChange(value){
+    setTextAreaResponse(value);
+    // console.log('OnTextChange')
   }
+
+  const returnNewRecord = (status)=> {
+    let newDate = new Date();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let fulldate= `${date}.${month}.${year}`;
+
+    const newRecord={'id':0, 'date':fulldate, 'poznamka':textAreaResponse, 'editor_id':0, 'editor_name':'', 'state':status, 'content':textAreaAsk};
+    console.log(newRecord);
+    props.onEditReqHistory(newRecord);
+
+  }
+
+
+ 
   return(
       <Card>
         <CardHeader>Vaše žádost</CardHeader>
         <CardBody>
             <Row>
                   <Col size="col-md-8">
-                      <TextAreaAsk{...props} OnTextChange={OnTextChange}/>
+                      <TextAreaAsk{...props} OnTextAskChange={OnTextAskChange}/>
                       
                   </Col>
                   <Col size="col-md-3">
-                    <Row ><Buttons{...props} OnSetClick={OnSetClick}/></Row>
+                    <Row ><Buttons{...props} returnNewRecord={returnNewRecord}/></Row>
 
-                    <Row><TextAreaRespose{...props} OnTextChange={OnTextChange}/></Row>
+                    <Row><TextAreaRespose{...props} OnTextResponseChange={OnTextResponseChange}/></Row>
                     
                   </Col>
 
             </Row>
-            {/* <Row>
-                <Col size="col-md-10"></Col>
-
-                <Col size="col-md-1">
-                  <ButtonAdd OnSetClick={OnSetClick}/>
-                  
-                  
-                </Col>
-            </Row> */}
+           
         </CardBody>
       </Card>
   )
@@ -281,7 +282,7 @@ function PageLarge(props) {
 
 const [data, setdata]=useState(props.data);
 let data2=props.data;
-console.log("data2 jsou:",data2);
+// console.log("data2 jsou:",data2);
 // console.log(data)
   return (
       <Card>
@@ -298,35 +299,44 @@ console.log("data2 jsou:",data2);
 
 
 function PageStoryBook(props) {
-  const reqHistoryDATA= [
-    {'id':89, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti"},
-    // {'id':89, 'date':'1.2.2020', 'poznamka':'props2', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno','content':{'rows':[]}},
-    // {'id':89, 'date':'1.2.2020', 'poznamka':'props3', 'editor_id':622, 'editor_name':'Alexandr','state':'nevyřízeno', 'content':{'rows':[]}},
-  ];
-
-  const [reqHistory, setReqHistory ]= useState(reqHistoryDATA);
   
-  
-  const onEditReqHistory= (newHistoryRecord) =>{
-    setReqHistory((prevHistory) => {
-      return [...prevHistory,newHistoryRecord];
-    });
-  }
-  
-
+  // const reqHistoryDATA= [
+  //   {'id':89, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti"},
+  //   {'id':90, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti2"},
+  //   // {'id':89, 'date':'1.2.2020', 'poznamka':'props2', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno','content':{'rows':[]}},
+  //   // {'id':89, 'date':'1.2.2020', 'poznamka':'props3', 'editor_id':622, 'editor_name':'Alexandr','state':'nevyřízeno', 'content':{'rows':[]}},
+  // ];
 
   const extraProps = {
     
     'data':{
     'name':2,
-    request_history: reqHistory
-    // 'request_history':[
-    //   {'id':89, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti"},
-    //   // {'id':89, 'date':'1.2.2020', 'poznamka':'props2', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno','content':{'rows':[]}},
-    //   // {'id':89, 'date':'1.2.2020', 'poznamka':'props3', 'editor_id':622, 'editor_name':'Alexandr','state':'nevyřízeno', 'content':{'rows':[]}},
+    'request_history':[
+      {'id':89, 'date':'1.2.2020', 'poznamka':'props1', 'editor_id':622, 'editor_name':'Alexandr', 'state':'nevyřízeno', 'content':"obsah žadosti"},
+      
+      // {'id':89, 'date':'1.2.2020', 'poznamka':'props3', 'editor_id':622, 'editor_name':'Alexandr','state':'nevyřízeno', 'content':{'rows':[]}},
     
-    // ],
+    ],
   }};
+
+  const [reqHistory, setReqHistory ]= useState(extraProps);
+  
+  
+  const onEditReqHistory= (newHistoryRecord) =>{
+    console.log("edit history called")
+    console.log(newHistoryRecord)
+   
+    setReqHistory((prevHistory) => {
+      let prevHistory2=prevHistory.data.request_history;
+      console.log(prevHistory.data.request_history)
+      prevHistory2.push(newHistoryRecord);
+      return {...prevHistory, request_history: `${prevHistory2}`};
+    });
+  }
+  
+
+
+
 
   // 'data':{
   // 'id':15,
