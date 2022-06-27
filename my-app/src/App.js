@@ -238,12 +238,19 @@ function Textcomponent(props) {
 }
 function Tablecomponent(props) {
   return(
-    <div>
-      <Row>Historie úprav:</Row>
-      {/* zkusit předelat do card */}
-      <Row><Cardcomponent{...props} /></Row>
+    //<div>
+      //<Row>Historie úprav:</Row>
+      //{/* zkusit předelat do card */}
+      //<Row><Cardcomponent{...props} /></Row>
 
-    </div>
+     //</div>
+  <Card>
+    <CardHeader>Historie úprav</CardHeader>
+    <CardBody>
+        <Row> <Cardcomponent{...props} /> </Row>
+       
+    </CardBody>
+  </Card>
   )
   
 }
