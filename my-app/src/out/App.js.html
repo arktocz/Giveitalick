@@ -1,4 +1,32 @@
-import logo from './logo.svg';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import logo from './logo.svg';
 // import './App.css';
 import React, { useState, useRef } from 'react'
 //import './index.js'
@@ -7,16 +35,16 @@ import React, { useState, useRef } from 'react'
 
 function App() {
   return (
-    <div>
-      <div className="container-fluid p-5 bg-primary text-white text-center">
-        <h1>Žádosti</h1>
-     </div>
+    &lt;div>
+      &lt;div className="container-fluid p-5 bg-primary text-white text-center">
+        &lt;h1>Žádosti&lt;/h1>
+     &lt;/div>
   
-    <div className="container mt-5">
-     <div className="row"></div>
-      <Page id={1}/>
-     </div>
-    </div>
+    &lt;div className="container mt-5">
+     &lt;div className="row">&lt;/div>
+      &lt;Page id={1}/>
+     &lt;/div>
+    &lt;/div>
   );
 }
 
@@ -27,7 +55,7 @@ function Col(props) {
       className = className + " " + props.size
   }
   return (
-      <div className={className}> {props.children} </div>
+      &lt;div className={className}> {props.children} &lt;/div>
   )
 }
 
@@ -42,9 +70,9 @@ function TextAreaAsk(props) {
     props.OnTextAskChange(e.target.value)
   }
   return(
-    <div className="form-outline">
-      <textarea className="form-control" id="TextAreaAsk" rows="20" defaultValue={props.data.request_history[props.data.request_history.length-1].content} onChange={onchange}   ></textarea>
-    </div>
+    &lt;div className="form-outline">
+      &lt;textarea className="form-control" id="TextAreaAsk" rows="20" defaultValue={props.data.request_history[props.data.request_history.length-1].content} onChange={onchange}   >&lt;/textarea>
+    &lt;/div>
   )
   
 }
@@ -58,20 +86,20 @@ function TextAreaAsk(props) {
 function TableUserData(props){
   let request_history = props.request_history.map(
     (item, index) => (
-      <Row key={item.id}>
-        <Col>{item.id}</Col>
-        <Col>{item.date}</Col>
-        <Col>{item.poznamka}</Col>
-        <Col>{item.state}</Col>
-        <Col>{item.editor_id}</Col>
-        <Col>{item.editor_name}</Col>
-      </Row>
+      &lt;Row key={item.id}>
+        &lt;Col>{item.id}&lt;/Col>
+        &lt;Col>{item.date}&lt;/Col>
+        &lt;Col>{item.poznamka}&lt;/Col>
+        &lt;Col>{item.state}&lt;/Col>
+        &lt;Col>{item.editor_id}&lt;/Col>
+        &lt;Col>{item.editor_name}&lt;/Col>
+      &lt;/Row>
     )
   )
   return(
-    <Row>
+    &lt;Row>
       {request_history}
-    </Row>
+    &lt;/Row>
     
   )
 }
@@ -85,21 +113,21 @@ function TableUserData(props){
 function Cardcomponent(props) {
   const [request_history, setRequest_history] = React.useState(props.data.request_history)  
   return(
-    <Card>
-      <CardHeader>
-        <Row>
-          <Col scope="col">ID</Col>
-          <Col scope="col">Date</Col>
-          <Col scope="col">Poznamka</Col>
-          <Col scope="col">Stav</Col>
-          <Col scope="col">Editor_ID</Col>
-          <Col scope="col">Editor_Name</Col>
-        </Row>
-      </CardHeader>
-      <CardBody>
-          <TableUserData request_history={request_history}/>
-      </CardBody>
-    </Card>
+    &lt;Card>
+      &lt;CardHeader>
+        &lt;Row>
+          &lt;Col scope="col">ID&lt;/Col>
+          &lt;Col scope="col">Date&lt;/Col>
+          &lt;Col scope="col">Poznamka&lt;/Col>
+          &lt;Col scope="col">Stav&lt;/Col>
+          &lt;Col scope="col">Editor_ID&lt;/Col>
+          &lt;Col scope="col">Editor_Name&lt;/Col>
+        &lt;/Row>
+      &lt;/CardHeader>
+      &lt;CardBody>
+          &lt;TableUserData request_history={request_history}/>
+      &lt;/CardBody>
+    &lt;/Card>
   )
 }
 
@@ -114,9 +142,9 @@ function TextAreaRespose(props){
     props.OnTextResponseChange(e.target.value)
   }
   return(
-    <div class="form-outline margin-top:10">
-      <textarea class="form-control" id="TextAreaRespose" rows="18" placeholder="Odpověd na žádost" onChange={onchange} ></textarea>
-    </div>
+    &lt;div class="form-outline margin-top:10">
+      &lt;textarea class="form-control" id="TextAreaRespose" rows="18" placeholder="Odpověd na žádost" onChange={onchange} >&lt;/textarea>
+    &lt;/div>
   )
 }
 
@@ -134,39 +162,39 @@ function Buttons(props) {
     props.returnNewRecord(value);
   }
   return(
-    <div class="btn-group"  role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="Schváleno" onClick={ButtonPressed} ></input>
-      <label class="btn btn-outline-primary" htmlFor="btnradio1">Schváleno</label>
+    &lt;div class="btn-group"  role="group" aria-label="Basic radio toggle button group">
+      &lt;input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="Schváleno" onClick={ButtonPressed} >&lt;/input>
+      &lt;label class="btn btn-outline-primary" htmlFor="btnradio1">Schváleno&lt;/label>
   
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Nevyřízeno" onClick={ButtonPressed} ></input>
-      <label class="btn btn-outline-primary" htmlFor="btnradio2">Nevyřízeno</label>
+      &lt;input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Nevyřízeno" onClick={ButtonPressed} >&lt;/input>
+      &lt;label class="btn btn-outline-primary" htmlFor="btnradio2">Nevyřízeno&lt;/label>
   
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Zamítnuto" onClick={ButtonPressed} ></input>
-      <label class="btn btn-outline-primary" htmlFor="btnradio3">Zamítnuto</label>
-      &nbsp;
-      <button className='btn btn-primary' onClick={saveButtonHandler}>ULOŽIT</button>
-    </div>   
+      &lt;input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Zamítnuto" onClick={ButtonPressed} >&lt;/input>
+      &lt;label class="btn btn-outline-primary" htmlFor="btnradio3">Zamítnuto&lt;/label>
+      &amp;nbsp;
+      &lt;button className='btn btn-primary' onClick={saveButtonHandler}>ULOŽIT&lt;/button>
+    &lt;/div>   
   )
 }
 
 
 function Row(props) {
   return (
-      <div className="row"> {props.children} </div>
+      &lt;div className="row"> {props.children} &lt;/div>
   )
 }
 
 
 function CardHeader(props) {
   return (
-      <div className="card-header" > { props.children } </div>
+      &lt;div className="card-header" > { props.children } &lt;/div>
       )
 }
 
 
 function CardBody(props) {
   return (
-      <div className="card-body" > { props.children } </div>
+      &lt;div className="card-body" > { props.children } &lt;/div>
       )
 }
 
@@ -212,22 +240,22 @@ function Textcomponent(props) {
 
   }
   return(
-      <Card>
-        <CardHeader>Vaše žádost</CardHeader>
-        <CardBody>
+      &lt;Card>
+        &lt;CardHeader>Vaše žádost&lt;/CardHeader>
+        &lt;CardBody>
 
-            <Row>
-              <Col size="col-md-8">
-                <TextAreaAsk{...props} OnTextAskChange={OnTextAskChange}/>                     
-              </Col>
-              <Col size="col-md-3">
-                <Row ><Buttons{...props} returnNewRecord={returnNewRecord}/></Row>
-                <Row><TextAreaRespose{...props} OnTextResponseChange={OnTextResponseChange}/></Row>
-              </Col>
-            </Row>
+            &lt;Row>
+              &lt;Col size="col-md-8">
+                &lt;TextAreaAsk{...props} OnTextAskChange={OnTextAskChange}/>                     
+              &lt;/Col>
+              &lt;Col size="col-md-3">
+                &lt;Row >&lt;Buttons{...props} returnNewRecord={returnNewRecord}/>&lt;/Row>
+                &lt;Row>&lt;TextAreaRespose{...props} OnTextResponseChange={OnTextResponseChange}/>&lt;/Row>
+              &lt;/Col>
+            &lt;/Row>
 
-        </CardBody>
-      </Card>
+        &lt;/CardBody>
+      &lt;/Card>
   ) 
 }
 
@@ -238,12 +266,12 @@ function Textcomponent(props) {
  */
 function Tablecomponent(props) {
   return(
-  <Card>
-    <CardHeader>Historie úprav</CardHeader>
-    <CardBody>
-        <Row> <Cardcomponent{...props} /> </Row>
-    </CardBody>
-  </Card>
+  &lt;Card>
+    &lt;CardHeader>Historie úprav&lt;/CardHeader>
+    &lt;CardBody>
+        &lt;Row> &lt;Cardcomponent{...props} /> &lt;/Row>
+    &lt;/CardBody>
+  &lt;/Card>
   )
   
 }
@@ -251,14 +279,14 @@ function Tablecomponent(props) {
 
 function CardFooter(props) {
   return (
-      <div className="card-footer" > { props.children } </div>
+      &lt;div className="card-footer" > { props.children } &lt;/div>
       )
 }
 
 
 function Card(props) {
   return (
-      <div className="card" > { props.children } </div>
+      &lt;div className="card" > { props.children } &lt;/div>
       )
 }
 
@@ -273,12 +301,12 @@ function PageLarge(props) {
 
   const [data, setdata]=useState(props.data);
   return (
-    <Card>
-        <CardBody>
-        <Row><Textcomponent{...props} onchange={setdata}/></Row>
-        <Row><Tablecomponent{...props}/></Row>
-        </CardBody>
-    </Card>
+    &lt;Card>
+        &lt;CardBody>
+        &lt;Row>&lt;Textcomponent{...props} onchange={setdata}/>&lt;/Row>
+        &lt;Row>&lt;Tablecomponent{...props}/>&lt;/Row>
+        &lt;/CardBody>
+    &lt;/Card>
   )
 }
 
@@ -311,11 +339,34 @@ function PageStoryBook(props) {
       return {...prevHistory, request_history: `${prevHistory2}`};
     });
   }
-  return <PageLarge {...extraProps} {...props} onEditReqHistory={onEditReqHistory}/>
+  return &lt;PageLarge {...extraProps} {...props} onEditReqHistory={onEditReqHistory}/>
 }
 
 function Page(props) {
-  return <PageStoryBook {...props} />
+  return &lt;PageStoryBook {...props} />
 }
 
 export default App;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Zadost.html">Zadost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Thu Jun 30 2022 12:05:15 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
