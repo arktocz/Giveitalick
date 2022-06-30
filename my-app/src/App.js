@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 // import './App.css';
 import React, { useState, useRef } from 'react'
 //import './index.js'
@@ -207,7 +207,7 @@ function Textcomponent(props) {
     let fakeName=values[numberOfElement]
     
     const newRecord={'id':fakeID, 'date':fulldate, 'poznamka':textAreaResponse, 'editor_id':fakeEditorID, 'editor_name':fakeName, 'state':status, 'content':textAreaAsk};
-    console.log(newRecord);
+    //console.log(newRecord);
     props.onEditReqHistory(newRecord);
 
   }
@@ -246,13 +246,6 @@ function Tablecomponent(props) {
   </Card>
   )
   
-}
-
-
-function CardFooter(props) {
-  return (
-      <div className="card-footer" > { props.children } </div>
-      )
 }
 
 
@@ -302,8 +295,8 @@ function PageStoryBook(props) {
   const [reqHistory, setReqHistory ]= useState(extraProps);
 
   const onEditReqHistory= (newHistoryRecord) =>{
-    console.log("edit history called")
-    console.log(newHistoryRecord)
+    //console.log("edit history called")
+    //console.log(newHistoryRecord)
     setReqHistory((prevHistory) => {
       let prevHistory2=prevHistory.data.request_history;
       console.log(prevHistory.data.request_history)
