@@ -12,6 +12,6 @@ Komponenta je v grafickém rozhraní rozdělena do 3 vzájemně propojených č�
 - ID editora
 - Jméno editora
 
-Uživatel tedy zadá svou žádost a uživatelé, kteří jsou systémem určeni jako jemu nadřízení jsou schopni přikládat poznámky a odpovídat na jeho žádost s hodnotou nevyřízeno až do doby, kdy nadřízený označí žádost jako schválenou nebo odmítnutou. Při každě odpovědi se zobrazí v tabulce odpověď a je tak možné sledovat historii žádosti.
+Uživatel tedy zadá svou žádost a uživatelé jsou schopni přikládat poznámky a odpovídat na jeho žádost s hodnotou nevyřízeno až do doby, kdy uživatel označí žádost jako schválenou nebo odmítnutou. Při každě odpovědi se zobrazí v tabulce odpověď a je tak možné sledovat historii žádosti.
 
 Celý projekt obsahuje dokumentaci vytvořenou pomocí jsdoc a požadovanou licenci MIT.
