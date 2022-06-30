@@ -31,7 +31,12 @@ function Col(props) {
   )
 }
 
-
+/**
+ * Renders a request field
+ * @param {*} props 
+ * @param {string} props.data.request_history[] - element of history request array
+ * @function
+ */
 function TextAreaAsk(props) {
   const onchange=(e)=>{
     props.OnTextAskChange(e.target.value)
@@ -44,7 +49,12 @@ function TextAreaAsk(props) {
   
 }
 
-
+/**
+ * Renders each of history request elements into table by .map
+ * @param {*} props 
+ * @param {array} props.data.request_history - history request array of dicts
+ * @function
+ */
 function TableUserData(props){
   let request_history = props.request_history.map(
     (item, index) => (
@@ -66,7 +76,12 @@ function TableUserData(props){
   )
 }
 
-
+/**
+ * Renders a complete history of requests into cardcomponent
+ * @param {*} props 
+ * @param {array} props.data.request_history - history request array of dicts
+ * @function
+ */
 function Cardcomponent(props) {
   const [request_history, setRequest_history] = React.useState(props.data.request_history)  
   return(
@@ -88,7 +103,12 @@ function Cardcomponent(props) {
   )
 }
 
-
+/**
+ * Renders each of history request elements into table by .map
+ * @param {*} props 
+ * @param {array} props.data.request_history - history request array of dicts
+ * @function
+ */
 function TextAreaRespose(props){
   const onchange=(e)=>{
     props.OnTextResponseChange(e.target.value)
@@ -100,7 +120,11 @@ function TextAreaRespose(props){
   )
 }
 
-
+/**
+ * Renders save and state buttons
+ * @param {*} props 
+ * @function
+ */
 function Buttons(props) {
   const [value, setvalue] = useState('')
   const ButtonPressed=(e)=>{
@@ -111,13 +135,13 @@ function Buttons(props) {
   }
   return(
     <div class="btn-group"  role="group" aria-label="Basic radio toggle button group">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="Schvaleno" onClick={ButtonPressed} ></input>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="Schváleno" onClick={ButtonPressed} ></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio1">Schváleno</label>
   
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Nevyrizeno" onClick={ButtonPressed} ></input>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Nevyřízeno" onClick={ButtonPressed} ></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio2">Nevyřízeno</label>
   
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Zamitnuto" onClick={ButtonPressed} ></input>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Zamítnuto" onClick={ButtonPressed} ></input>
       <label class="btn btn-outline-primary" htmlFor="btnradio3">Zamítnuto</label>
       &nbsp;
       <button className='btn btn-primary' onClick={saveButtonHandler}>ULOŽIT</button>
@@ -146,7 +170,11 @@ function CardBody(props) {
       )
 }
 
-
+/**
+ * Renders request, note and buttons fields+ creates new record onclick
+ * @param {*} props 
+ * @function
+ */
 function Textcomponent(props) {
   const [textAreaResponse, setTextAreaResponse] = useState("");
   const [textAreaAsk, setTextAreaAsk] = useState("");
@@ -203,7 +231,11 @@ function Textcomponent(props) {
   ) 
 }
 
-
+/**
+ * Renders carcomponent into table component (bottom half)
+ * @param {*} props 
+ * @function
+ */
 function Tablecomponent(props) {
   return(
   <Card>
@@ -231,31 +263,15 @@ function Card(props) {
 }
 
 
-function PageMedium(props) {
-  return (
-      <Card>
-          <CardHeader>Další informace</CardHeader>
-          <CardBody>informace</CardBody>
-          <CardFooter>Patička</CardFooter>
-      </Card>
-  )
-}
-
-
-function ExtraInfo(props) {
-  return (
-      <Card>
-          <CardHeader>Další informace</CardHeader>
-          <CardBody>informace</CardBody>
-          <CardFooter>Patička</CardFooter>
-      </Card>
-  )
-}
-
+/**
+ * Renders teaxt and table into one component
+ * @param {*} props 
+ * @param {array} props.data - extra props inside
+ * @function
+ */
 function PageLarge(props) {
 
   const [data, setdata]=useState(props.data);
-  let data2=props.data;
   return (
     <Card>
         <CardBody>
@@ -267,6 +283,12 @@ function PageLarge(props) {
 }
 
 
+/**
+ * Renders pagelarge into final page and serves as main com channel for components
+ * @param {*} props 
+ * @param {array} props.extraProps - request history
+ * @function
+ */
 function PageStoryBook(props) {
   const extraProps = {
     'data':{
